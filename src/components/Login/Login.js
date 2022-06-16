@@ -65,13 +65,16 @@ const Login = (props) => {
   //   };
   // }, [enteredEmail, enteredPassword]);
 
-  useEffect(() => {
+const { isValid: emailIsValid } = emailState; // object destructuring
+const { isValid: passwordIsValid } = passwordState;
 
-  // gets executed at every key stroke
+  useEffect(() => {
+    // vrem sa ruleze efectul doar cand se schimba VALIDITATEA inputurilor, 
+    // nu si cand se schimba VALOAREA lor, daca valididatea nu se schimba
     const identifier = setTimeout(() => {
       console.log('Checking form validity!');
       setFormIsValid(
-        emailState.isValid && passwordState.isValid
+        emailIsValid && passwordIsValid
       );
     }, 500);
 
@@ -79,7 +82,7 @@ const Login = (props) => {
       console.log('CLEANUP');
       clearTimeout(identifier);
     };
-  }, [emailState, passwordState]);
+  }, [emailIsValid, passwordIsValid]);
 
   const emailChangeHandler = (event) => {
     // setEnteredEmail(event.target.value);
