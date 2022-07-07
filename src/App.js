@@ -1,22 +1,25 @@
-import React, { useContext } from "react";
+import { Switch, Route } from 'react-router-dom';
 
-import Login from "./components/Login/Login";
-import Home from "./components/Home/Home";
-import MainHeader from "./components/MainHeader/MainHeader";
-import AuthContext from "./store/auth-context";
+import Layout from './components/Layout/Layout';
+import UserProfile from './components/Profile/UserProfile';
+import AuthPage from './pages/AuthPage';
+import HomePage from './pages/HomePage';
 
 function App() {
-
-  const ctx = useContext(AuthContext);
-
   return (
-    <>
-      <MainHeader />
-      <main>
-        {!ctx.isLoggedIn && <Login/>}
-        {ctx.isLoggedIn && <Home/>}
-      </main>
-    </>
+    <Layout>
+      <Switch>
+        <Route path='/' exact>
+          <HomePage />
+        </Route>
+        <Route path='/auth'>
+          <AuthPage />
+        </Route>
+        <Route path='/profile'>
+          <UserProfile />
+        </Route>
+      </Switch>
+    </Layout>
   );
 }
 
