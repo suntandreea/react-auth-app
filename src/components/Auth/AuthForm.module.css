@@ -70,3 +70,12 @@
   background-color: transparent;
   color: #ae82cc;
 }
+
+.error {
+  display: inline-block;
+  border: 1px solid red;
+  color: #f3a4be;
+  text-align: center;
+  margin: 10px 0;
+  padding: 6px 10px;
+}
